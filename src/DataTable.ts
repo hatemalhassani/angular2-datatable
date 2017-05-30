@@ -82,9 +82,10 @@ export class DataTable implements OnChanges, DoCheck {
     }
 
     private calculateNewActivePage(previousRowsOnPage: number, currentRowsOnPage: number): number {
-        let firstRowOnPage = (this.activePage - 1) * previousRowsOnPage + 1;
-        let newActivePage = Math.ceil(firstRowOnPage / currentRowsOnPage);
-        return newActivePage;
+        return 1;
+        // let firstRowOnPage = (this.activePage - 1) * previousRowsOnPage + 1;
+        // let newActivePage = Math.ceil(firstRowOnPage / currentRowsOnPage);
+        // return newActivePage;
     }
 
     private recalculatePage() {
@@ -118,6 +119,7 @@ export class DataTable implements OnChanges, DoCheck {
         if (changes["inputData"]) {
             this.inputData = changes["inputData"].currentValue || [];
             this.recalculatePage();
+            this.ngDoCheck();
             this.mustRecalculateData = true;
         }
     }
@@ -137,7 +139,6 @@ export class DataTable implements OnChanges, DoCheck {
     private fillData(): void {
         this.activePage = this.activePage;
         this.rowsOnPage = this.rowsOnPage;
-
         let offset = (this.activePage - 1) * this.rowsOnPage;
         let data = this.inputData;
         var sortBy = this.sortBy;
@@ -146,8 +147,9 @@ export class DataTable implements OnChanges, DoCheck {
         } else {
             data = _.orderBy(data, sortBy, [this.sortOrder]);
         }
-        data = _.slice(data, offset, offset + this.rowsOnPage);
+        // data = _.slice(data, offset, offset + this.rowsOnPage);
         this.data = data;
+
     }
 
     private caseInsensitiveIteratee(sortBy: string) {

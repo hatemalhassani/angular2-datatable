@@ -1,5 +1,5 @@
-import {Component, Input, OnChanges} from "@angular/core";
-import {DataTable} from "./DataTable";
+import { Component, Input, OnChanges } from "@angular/core";
+import { DataTable } from "./DataTable";
 import * as _ from "lodash";
 
 @Component({
@@ -46,6 +46,7 @@ import * as _ from "lodash";
                 <a class="page-link" style="cursor: pointer">{{rows}}</a>
             </li>
         </ul>
+        <p class="pull-left pad20L">إجمالي العناصر {{p.dataLength}} </p>
     </mfPaginator>
     `
 })
